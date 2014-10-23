@@ -1,6 +1,7 @@
 ---
 layout:     post
 title:      Comment by Mark Cuban takes down Bakery Website
+summary:    Mark Cuban mentioned an investment of his on a radio show and inadvertently took down the website
 categories: stories
 ---
 
