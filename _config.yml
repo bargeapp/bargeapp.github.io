@@ -1,0 +1,11 @@
+# Site settings
+title: Barge | Blog
+email: hello@bargeapp.com
+description: >
+  A blog about software testing
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://blog.bargeapp.com" # the base hostname & protocol for your site
+twitter_username: bargeapp
+
+# Build settings
+markdown: kramdown
