@@ -9,3 +9,7 @@ twitter_username: bargeapp
 
 # Build settings
 markdown: kramdown
+
+# Outputting
+permalink: pretty
+paginate_path: /page/:num
