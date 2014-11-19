@@ -11,5 +11,5 @@ twitter_username: bargeapp
 markdown: kramdown
 
 # Outputting
-permalink: pretty
+permalink: /:title
 paginate_path: /page/:num
