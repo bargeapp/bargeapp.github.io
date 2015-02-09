@@ -16,8 +16,8 @@ Speaking of testing frequency, why don't we load test more often? Modern tooling
 
 Barge was built to modernize testing by running your *existing* tests at scale. Barge uses real browsers so you're testing your *application* and not your load balancer. And Barge is built for integration - a simple REST API makes it a breeze to update your existing tests to use Barge and configure them to run in any CI server.
 
-Here's the obligatory animated gif showing how simple it is to update an existing test. In this case the subject is a Capybara test but Barge supports any Selenium-based languages and frameworks (the full code used in that gif is available at [in this gist](https://gist.github.com/hackerhasid/1cb5949d1055a1fed3db)):
+Here's the obligatory animated gif showing how simple it is to update an existing test. In this case the subject is a Capybara test but Barge supports Selenium tests built in any language or framework (the full code used in that gif is available at [in this gist](https://gist.github.com/hackerhasid/1cb5949d1055a1fed3db)):
 
 ![This is not a kitten, sorry](/assets/update_capybara_for_barge.gif)
 
-Barge supports both Javascript based tests (via PhantomJS & CasperJS) and Selenium based tests (via the Selenium libraries for your language or a framework built on top of them like Capybara). All it takes to test at scale is an API call before and after your test run. Give Barge a try and start testing right!
+Barge supports both Javascript based tests (via PhantomJS & CasperJS) and Selenium based tests (via the Selenium libraries for your language or a framework built on top of them like Capybara). All it takes to test at scale is an API call before and after your test run. Give Barge a try and fix testing in your organization!
