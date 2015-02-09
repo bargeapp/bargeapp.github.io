@@ -10,29 +10,12 @@ We write integration tests to test that our web application works properly but w
 
 Yes, yes, there's load testing. But why are we still testing our websites load capacity as if they're [GeoCities](http://en.wikipedia.org/wiki/GeoCities) pages? Modern websites aren't contained in a single HTTP response (with the exception of [Berkshire Hathaway](http://www.berkshirehathaway.com/)) - they make use of a lot of javascript and backend service to create the interface. Tools like *ab* and *JMeter* and services built on them are useful for testing the *throughput* of your servers or load balancers (e.g. before deciding on a provider) but they just are not capable of testing the availability and functionality of modern web applications! To really test you need a <strike>web browser</strike> **lot** of web browsers. 
 
-There are some tools that will do that - test your site with a whole lot of real web browsers - but they come at a high maintenance cost. You're still going to need your integration tests but now you need to maintain a whole new set of tests. Which isn't really feasible considering it's also an entirely different toolset. And those load tests are only run once in a while so the tests become stale - new features are built that aren't load tested and existing pages change causing the load tests to break. I guess you'll have to skip the next scheduled load test because there just isn't time to update them all. Speaking of testing frequency, you're probably running integrations tests pretty frequentyly, right? Maybe even on every check-in. So why are you load testing so infrequently? Thousands of lines of code are changing *every day* in your codebase, shouldn't you be load testing nightly to spot load regressions before they hit production?
+There are some tools that will do that (test your site with a whole lot of real web browsers) but they come at a high maintenance cost. You're still going to need your integration tests but now you need to maintain a whole new set of tests built using an entirely different toolset. That's a lot of work, especially when you don't run those tests very often. So more often than not the tests become stale - new features are built that aren't load tested and existing pages change causing the load tests to break. And the next time you run your load tests you end up spending a lot of time reworking them or just skipping a good chunk of feature tests because you don't have the time to (re)write them.
 
-Barge runs your existing Selenium tests at scale. It works with any language and framework; all you need is an API call before the and after your script. Here's an snippet of a Capybara script updated to use Barge:
+Speaking of testing frequency, why don't we load test more often? Modern tooling makes it super simple to run integration tests on every check-in. Thousands of lines of code are changing *every day* in your codebase, shouldn't you be load testing regularly too? Don't you want to spot load regressions as soon as they're introduced (and certainly before they hit production)?
 
-{% highlight ruby %}
-  # This code assumes the following gems: 'capybara', 'capybara-selenium-remote', barge-sdk'
+Barge was built to modernize testing. Barge runs your *existing* Selenium tests at scale and works with any language and framework. Barge uses real browsers so you're testing your *application* and not your load balancer. And Barge is built for integration - a simple REST API makes it a breeze to update your existing tests to use Barge and configure them to run in any CI server.
 
-  require 'capybara/rails'
-  require 'barge'
+Here's the obligatory animated gif showing how simple it is to update an existing test, in this case a Capybara test (the full code used in that gif is available at [in this gist](https://gist.github.com/hackerhasid/1cb5949d1055a1fed3db)):
 
-  @client = Barge::Client.new api_key: 'abcdef123456'
-
-  session = @client.create_webdriver_session
-
-  while session['status'] == 'pending'
-    sleep 2
-    session = @client.describe_webdriver_sessions(session['id'])
-  end
-
-  Capybara.default_driver = :selenium
-  Capybara::Selenium::Remote.use session['ip'], url: "http://#{session['ip']}:#{session['port']}/"
-
-  # ... do stuff
-
-  @client.create_webdriver_test webdriver_session_id: session['id'], users: 500, minutes: 10
-{% endhighlight %}
+![This is not a kitten, sorry](/assets/update_capybara_for_barge.gif)
