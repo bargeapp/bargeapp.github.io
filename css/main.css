@@ -411,6 +411,9 @@ a {
 #blog ul li{
   margin:10px 15px 10px 15px;
 }
+#blog .title {
+  padding-bottom: 30px;
+}
 #main #blog ul .title{
   font-size:18px;
   border-bottom:0;
