@@ -14,8 +14,10 @@ There are some tools on the market that promise to test your site with a whole l
 
 Speaking of testing frequency, why don't we load test more often? Modern tooling makes it super simple to run integration tests on every check-in. Thousands of lines of code are changing *every day* in your codebase, shouldn't you be load testing regularly too? Don't you want to spot load regressions as soon as they're introduced (and certainly before they hit production)?
 
-Barge was built to modernize testing. Barge runs your *existing* Selenium tests at scale and works with any language and framework. Barge uses real browsers so you're testing your *application* and not your load balancer. And Barge is built for integration - a simple REST API makes it a breeze to update your existing tests to use Barge and configure them to run in any CI server.
+Barge was built to modernize testing by running your *existing* tests at scale. Barge uses real browsers so you're testing your *application* and not your load balancer. And Barge is built for integration - a simple REST API makes it a breeze to update your existing tests to use Barge and configure them to run in any CI server.
 
-Here's the obligatory animated gif showing how simple it is to update an existing test, in this case a Capybara test (the full code used in that gif is available at [in this gist](https://gist.github.com/hackerhasid/1cb5949d1055a1fed3db)):
+Here's the obligatory animated gif showing how simple it is to update an existing test. In this case the subject is a Capybara test but Barge supports any Selenium-based languages and frameworks (the full code used in that gif is available at [in this gist](https://gist.github.com/hackerhasid/1cb5949d1055a1fed3db)):
 
 ![This is not a kitten, sorry](/assets/update_capybara_for_barge.gif)
+
+Barge supports both Javascript based tests (via PhantomJS & CasperJS) and Selenium based tests (via the Selenium libraries for your language or a framework built on top of them like Capybara). All it takes to test at scale is an API call before and after your test run. Give Barge a try and start testing right!
