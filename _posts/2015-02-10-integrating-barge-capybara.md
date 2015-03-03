@@ -80,9 +80,9 @@ def configure_selenium_for_barge
   @barge_session = @barge_client.create_webdriver_session
 
   # wait for it to be ready
-  while session['status'] == 'pending'
+  while @barge_session['status'] == 'pending'
     sleep 2
-    @barge_session = @barge_client.describe_webdriver_sessions(session['id'])
+    @barge_session = @barge_client.describe_webdriver_sessions(@barge_session['id'])
   end
 
   # configure selenium remote driver
